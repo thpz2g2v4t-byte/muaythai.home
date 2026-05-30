@@ -1,0 +1,515 @@
+I'll build a single self-contained HTML file you can upload anywhere (Netlify, GitHub Pages, your own host) — no React or build step needed.
+Action: file_editor create /app/muaythai-home.html --file-text "<!doctype html>
+<html lang=\"en\">
+<head>
+<meta charset=\"UTF-8\" />
+<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
+<meta name=\"description\" content=\"muaythai.home — Train Like A Nak Muay. Anywhere. Anytime. The complete home Muay Thai system. One-time payment, lifetime access.\" />
+<title>muaythai.home — Train Like A Nak Muay. Anywhere. Anytime.</title>
+<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />
+<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin />
+<link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap\" rel=\"stylesheet\" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0a0a0a;color:#fff;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.font-display{font-family:'Anton',sans-serif;letter-spacing:-.01em;text-transform:uppercase;line-height:.9}
+.font-mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1280px;margin:0 auto;padding:0 20px}
+@media(min-width:768px){.container{padding:0 32px}}
+::selection{background:#FF2A2A;color:#fff}
+
+/* NAV */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:all .3s;height:64px}
+header.nav.scrolled{background:rgba(0,0,0,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.1)}
+header.nav .inner{height:100%;display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;padding:0 20px}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-mark{width:36px;height:36px;background:#FF2A2A;display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo-text{font-family:'Anton',sans-serif;font-size:20px;text-transform:uppercase;letter-spacing:.06em}
+.logo-text span{color:#FF2A2A}
+nav.links{display:none;gap:32px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#d4d4d8}
+nav.links button:hover{color:#fff}
+@media(min-width:900px){nav.links{display:flex}}
+
+/* BUTTONS */
+.btn-primary{background:#FF2A2A;color:#fff;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:16px 32px;border-bottom:4px solid #000;transition:all .15s;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px}
+.btn-primary:hover{background:#FF4D4D;transform:translateY(-2px);border-bottom-width:6px}
+.btn-primary.sm{padding:10px 20px;font-size:11px}
+.btn-secondary{background:transparent;color:#fff;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:16px 32px;border:1px solid rgba(255,255,255,.2);transition:all .2s;display:inline-flex;align-items:center;gap:8px;font-size:14px}
+.btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,.05)}
+.btn-secondary.outline-white{border-color:#fff}
+.btn-secondary.outline-white:hover{background:#fff;color:#000}
+.arrow{display:inline-block;transition:transform .2s}
+.btn-primary:hover .arrow{transform:translateX(4px)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-bg::after{content:\"\";position:absolute;inset:0;background:linear-gradient(90deg,#000 0%,rgba(0,0,0,.8) 50%,rgba(0,0,0,.4) 100%)}
+.hero-bg::before{content:\"\";position:absolute;inset:0;background:linear-gradient(0deg,#0a0a0a 0%,transparent 50%);z-index:2}
+.hero-content{position:relative;z-index:5;padding:140px 0 90px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);backdrop-filter:blur(8px);padding:6px 12px;margin-bottom:24px;align-self:flex-start;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.2em}
+.hero-badge .dot{color:#FFD700}
+.hero h1{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(40px,8vw,96px);line-height:.9;max-width:1100px}
+.hero h1 .accent{color:#FF2A2A}
+.hero .sub{margin-top:24px;max-width:640px;font-size:clamp(16px,2vw,20px);color:#d4d4d8}
+.hero .ctas{margin-top:40px;display:flex;flex-direction:column;gap:16px}
+@media(min-width:640px){.hero .ctas{flex-direction:row}}
+.hero .social{margin-top:48px;display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+.stars{display:inline-flex;gap:2px;color:#FFD700;font-size:16px}
+.hero .social .sep{height:24px;width:1px;background:rgba(255,255,255,.15);display:none}
+@media(min-width:768px){.hero .social .sep{display:block}}
+.hero .price-strip{position:absolute;bottom:0;left:0;right:0;z-index:5;border-top:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.5);backdrop-filter:blur(8px)}
+.hero .price-strip .inner{max-width:1280px;margin:0 auto;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#a1a1aa}
+.hero .price-strip b{color:#fff}
+.hero .price-strip .red{color:#FF2A2A;font-weight:700}
+@media(min-width:768px){.hero .price-strip .mid{display:inline}}
+
+/* MARQUEE */
+.marquee{background:#FF2A2A;border-top:1px solid #000;border-bottom:1px solid #000;overflow:hidden;padding:16px 0}
+.marquee-track{display:flex;white-space:nowrap;animation:marquee 30s linear infinite}
+.marquee-item{display:inline-flex;align-items:center;gap:32px;padding:0 32px}
+.marquee-item span.t{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(20px,2.4vw,30px);color:#000;letter-spacing:-.01em}
+.marquee-item span.s{color:rgba(0,0,0,.7);font-weight:700}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTION HEADINGS */
+.eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:#FF2A2A;margin-bottom:16px}
+.h2{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(36px,6vw,72px);line-height:.95}
+.h2 .accent{color:#FF2A2A}
+section.block{padding:96px 0;border-top:1px solid rgba(255,255,255,.05)}
+@media(min-width:768px){section.block{padding:128px 0}}
+
+/* WHY */
+.why-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
+@media(min-width:1024px){.why-grid{grid-template-columns:5fr 7fr;gap:48px}}
+.why-image{position:relative}
+.why-image .frame{aspect-ratio:4/5;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.why-image .frame img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .7s}
+.why-image .frame:hover img{filter:grayscale(0)}
+.why-image .badge{position:absolute;bottom:-24px;right:-12px;background:#FF2A2A;padding:16px 24px;border-bottom:4px solid #000}
+.why-image .badge .n{font-family:'Anton',sans-serif;font-size:30px;line-height:1}
+.why-image .badge .l{font-size:10px;text-transform:uppercase;letter-spacing:.15em;font-weight:700;margin-top:4px}
+.why-points{display:grid;grid-template-columns:1fr;gap:1px;background:rgba(255,255,255,.1);margin-top:40px}
+@media(min-width:640px){.why-points{grid-template-columns:1fr 1fr}}
+.why-point{background:#0a0a0a;padding:24px;transition:background .2s}
+.why-point:hover{background:#141414}
+.why-point .icon{width:40px;height:40px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px;transition:all .2s}
+.why-point:hover .icon{background:#FF2A2A;border-color:#FF2A2A}
+.why-point h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:20px;margin-bottom:8px}
+.why-point p{font-size:14px;color:#a1a1aa}
+
+/* MODULES */
+.modules-head{display:flex;flex-direction:column;gap:24px;margin-bottom:64px}
+@media(min-width:768px){.modules-head{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.modules-head p{color:#a1a1aa;max-width:380px}
+.modules-grid{display:grid;grid-template-columns:1fr;gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1)}
+@media(min-width:640px){.modules-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.modules-grid{grid-template-columns:repeat(3,1fr)}}
+.mod{background:#0a0a0a;padding:28px;transition:all .3s;cursor:default}
+.mod:hover{background:#141414}
+.mod-top{display:flex;justify-content:space-between;margin-bottom:20px}
+.mod-top .n{font-family:'JetBrains Mono',monospace;font-size:12px;color:#71717a}
+.mod-top .d{width:8px;height:8px;background:#FF2A2A;transition:transform .2s}
+.mod:hover .mod-top .d{transform:scale(1.5)}
+.mod h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:22px;margin-bottom:12px;transition:color .2s}
+.mod:hover h3{color:#FF2A2A}
+.mod p{font-size:14px;color:#a1a1aa}
+
+/* PRICING */
+.pricing{position:relative;overflow:hidden}
+.pricing .big-num{position:absolute;top:-40px;right:-40px;font-family:'Anton',sans-serif;font-size:320px;line-height:1;color:rgba(255,255,255,.02);pointer-events:none;user-select:none}
+.pricing-head{text-align:center;max-width:720px;margin:0 auto 64px}
+.pricing-head p{font-size:18px;color:#a1a1aa;margin-top:20px}
+.pricing-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:stretch}
+@media(min-width:1024px){.pricing-grid{grid-template-columns:repeat(3,1fr);gap:20px}}
+.pcard{position:relative;background:#141414;border:1px solid rgba(255,255,255,.1);padding:32px;display:flex;flex-direction:column;transition:all .3s}
+.pcard:hover{border-color:rgba(255,255,255,.3);transform:translateY(-4px)}
+.pcard.featured{border-color:#FF2A2A;animation:redGlow 3.5s ease-in-out infinite;z-index:2}
+@media(min-width:1024px){.pcard.featured{transform:translateY(-16px)}.pcard.featured:hover{transform:translateY(-20px)}}
+@keyframes redGlow{0%,100%{box-shadow:0 0 0 1px #FF2A2A,0 0 30px rgba(255,42,42,.25)}50%{box-shadow:0 0 0 1px #FF2A2A,0 0 60px rgba(255,42,42,.45)}}
+.tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;padding:6px 16px;white-space:nowrap}
+.tag.white{background:#fff;color:#000}
+.tag.red{background:#FF2A2A;color:#fff}
+.pcard-head{display:flex;align-items:center;gap:12px;margin-bottom:8px;margin-top:12px}
+.pcard-icon{width:40px;height:40px;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px}
+.pcard-icon.red{background:#FF2A2A;border-color:#FF2A2A}
+.pcard-head h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:30px}
+.pcard .sub{font-size:14px;color:#a1a1aa;margin-bottom:24px}
+.price-row{display:flex;align-items:flex-end;gap:12px;margin-bottom:8px}
+.price-row .price{font-family:'Anton',sans-serif;font-size:64px;line-height:1}
+.price-row .old{color:#71717a;text-decoration:line-through;font-size:18px;padding-bottom:8px}
+.tax{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#71717a;margin-bottom:32px}
+.features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:40px;flex:1}
+.features li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#e4e4e7}
+.check{flex-shrink:0;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);color:#fff;font-size:11px;font-weight:900}
+.check.red{background:#FF2A2A}
+.pcard-cta{width:100%;justify-content:center}
+.secure{text-align:center;font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:#71717a;margin-top:16px}
+.trust-row{margin-top:48px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#71717a}
+
+/* TESTIMONIALS */
+.t-head{display:flex;flex-direction:column;gap:24px;margin-bottom:56px}
+@media(min-width:768px){.t-head{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.t-grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.t-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.t-grid{grid-template-columns:repeat(3,1fr)}}
+.tcard{position:relative;background:#141414;border:1px solid rgba(255,255,255,.1);padding:28px;display:flex;flex-direction:column;transition:border-color .2s}
+.tcard:hover{border-color:rgba(255,255,255,.3)}
+.tcard.big{grid-column:span 1}
+@media(min-width:1024px){.tcard.big{grid-row:span 2}}
+.tcard .q{color:#FF2A2A;font-size:32px;line-height:1;margin-bottom:20px}
+.tcard p.body{color:#e4e4e7;flex:1}
+.tcard.big p.body{font-size:22px;line-height:1.4}
+.tcard .author{margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:12px}
+.tcard .avatar{width:44px;height:44px;object-fit:cover;filter:grayscale(1);border:1px solid rgba(255,255,255,.1)}
+.tcard .name{font-weight:700;font-size:14px}
+.tcard .role{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#71717a}
+.tcard .stars-row{margin-left:auto;display:flex;color:#FFD700;font-size:12px}
+
+/* FAQ */
+.faq-wrap{max-width:768px;margin:0 auto}
+.faq-head{text-align:center;margin-bottom:56px}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.1)}
+.faq-q{width:100%;text-align:left;padding:24px 0;display:flex;justify-content:space-between;align-items:center;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:20px;transition:color .2s}
+.faq-q:hover{color:#FF2A2A}
+.faq-q .plus{color:#FF2A2A;font-size:24px;transition:transform .2s;flex-shrink:0;margin-left:16px}
+.faq-item.open .faq-q .plus{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:#a1a1aa}
+.faq-a-inner{padding-bottom:24px}
+.faq-item.open .faq-a{max-height:400px}
+
+/* FINAL CTA */
+.final{position:relative;padding:96px 0;overflow:hidden;text-align:center}
+@media(min-width:768px){.final{padding:128px 0}}
+.final-bg{position:absolute;inset:0}
+.final-bg img{width:100%;height:100%;object-fit:cover}
+.final-bg::after{content:\"\";position:absolute;inset:0;background:rgba(0,0,0,.8)}
+.final-content{position:relative;z-index:2;max-width:768px;margin:0 auto;padding:0 20px}
+.final h2{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(40px,7vw,84px);line-height:.9;margin-bottom:24px}
+.final h2 .accent{color:#FF2A2A}
+.final p{font-size:clamp(16px,2vw,20px);color:#d4d4d8;margin-bottom:40px}
+
+/* FOOTER */
+footer{background:#000;border-top:1px solid rgba(255,255,255,.1);padding:48px 0}
+footer .inner{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center}
+@media(min-width:768px){footer .inner{flex-direction:row;justify-content:space-between}}
+footer .legal{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#71717a}
+footer .flinks{display:flex;gap:24px;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#71717a}
+footer .flinks a:hover{color:#fff}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:#2a2a2a}
+::-webkit-scrollbar-thumb:hover{background:#FF2A2A}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class=\"nav\" id=\"nav\">
+  <div class=\"inner\">
+    <a href=\"#top\" class=\"logo\">
+      <span class=\"logo-mark\">🔥</span>
+      <span class=\"logo-text\">muaythai<span>.home</span></span>
+    </a>
+    <nav class=\"links\">
+      <button onclick=\"go('modules')\">Curriculum</button>
+      <button onclick=\"go('pricing')\">Pricing</button>
+      <button onclick=\"go('testimonials')\">Reviews</button>
+      <button onclick=\"go('faq')\">FAQ</button>
+    </nav>
+    <button class=\"btn-primary sm\" onclick=\"go('pricing')\">Get Started</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class=\"hero\" id=\"top\">
+  <div class=\"hero-bg\">
+    <img src=\"https://images.pexels.com/photos/11045334/pexels-photo-11045334.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800\" alt=\"Muay Thai fighter\" />
+  </div>
+  <div class=\"container hero-content\">
+    <div class=\"hero-badge\"><span class=\"dot\">⚡</span> One-Time Payment · Lifetime Access</div>
+    <h1>Train Like A <span class=\"accent\">Nak Muay.</span><br/>Anywhere. Anytime.</h1>
+    <p class=\"sub\">The complete home training system that turns beginners into fighters. Real technique. Real drills. Real progress — delivered straight to your phone.</p>
+    <div class=\"ctas\">
+      <button class=\"btn-primary\" onclick=\"go('pricing')\">Choose Your Pack <span class=\"arrow\">→</span></button>
+      <button class=\"btn-secondary\" onclick=\"go('modules')\">See What's Inside</button>
+    </div>
+    <div class=\"social\">
+      <div style=\"display:flex;align-items:center;gap:8px\"><span class=\"stars\">★★★★★</span><span style=\"font-size:14px;color:#d4d4d8;font-weight:600\">4.9 / 5 from 2,400+ students</span></div>
+      <div class=\"sep\"></div>
+      <div style=\"font-size:14px;color:#a1a1aa\"><b style=\"color:#fff\">12,000+</b> fighters trained globally</div>
+    </div>
+  </div>
+  <div class=\"price-strip\">
+    <div class=\"inner\">
+      <span>Starter from <b>€9.90</b></span>
+      <span class=\"mid\" style=\"display:none\">No subscriptions. No nonsense.</span>
+      <span class=\"red\">Instant Access After Payment →</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class=\"marquee\">
+  <div class=\"marquee-track\" id=\"marquee-track\"></div>
+</div>
+
+<!-- WHY -->
+<section class=\"block\">
+  <div class=\"container\">
+    <div class=\"why-grid\">
+      <div class=\"why-image\">
+        <div class=\"frame\"><img src=\"https://images.unsplash.com/photo-1525680996651-0222228be6f0?crop=entropy&cs=srgb&fm=jpg&q=85&w=1400\" alt=\"Muay Thai training\" /></div>
+        <div class=\"badge\"><div class=\"n\">#1</div><div class=\"l\">Home Muay Thai System</div></div>
+      </div>
+      <div>
+        <div class=\"eyebrow\">Why muaythai.home</div>
+        <h2 class=\"h2\">Stop Watching.<br/><span class=\"accent\">Start Fighting.</span></h2>
+        <p style=\"font-size:18px;color:#a1a1aa;max-width:560px;margin:24px 0\">Most people scroll. The few who actually train? They get results. This is the structured system that closes the gap between knowing and doing.</p>
+        <div class=\"why-points\">
+          <div class=\"why-point\"><div class=\"icon\">🎯</div><h3>Real Technique</h3><p>Built from years on the mats — not random YouTube clips. Stance, balance, power — refined.</p></div>
+          <div class=\"why-point\"><div class=\"icon\">🥊</div><h3>Train At Home</h3><p>Heavy bag, shadow, calisthenics. No gym? No problem. We give you the system.</p></div>
+          <div class=\"why-point\"><div class=\"icon\">⏱️</div><h3>Built For Busy Lives</h3><p>Structured weekly plans that fit 30 mins or 2 hours. Train smart, not just hard.</p></div>
+          <div class=\"why-point\"><div class=\"icon\">🛡️</div><h3>Train Long-Term</h3><p>Mobility, injury prevention, recovery — train for life, not weeks.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class=\"block\" id=\"modules\">
+  <div class=\"container\">
+    <div class=\"modules-head\">
+      <div>
+        <div class=\"eyebrow\">The Curriculum</div>
+        <h2 class=\"h2\">15 Modules. Zero <span class=\"accent\">Fluff.</span></h2>
+      </div>
+      <p>From your first jab to your first fight — every drill, every detail, every level covered.</p>
+    </div>
+    <div class=\"modules-grid\" id=\"modules-grid\"></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class=\"block pricing\" id=\"pricing\">
+  <div class=\"big-num\">3</div>
+  <div class=\"container\">
+    <div class=\"pricing-head\">
+      <div class=\"eyebrow\">Choose Your Path</div>
+      <h2 class=\"h2\">One-Time Payment.<br/><span class=\"accent\">Lifetime Access.</span></h2>
+      <p>No subscriptions. No hidden fees. Pay once — train forever.</p>
+    </div>
+    <div class=\"pricing-grid\">
+      <!-- STARTER -->
+      <div class=\"pcard\">
+        <div class=\"tag white\">Get Started</div>
+        <div class=\"pcard-head\"><div class=\"pcard-icon\">⚡</div><h3>Starter</h3></div>
+        <div class=\"sub\">Perfect for absolute beginners</div>
+        <div class=\"price-row\"><div class=\"price\">€9.90</div></div>
+        <div class=\"tax\">One-time · Lifetime access</div>
+        <ul class=\"features\">
+          <li><span class=\"check\">✓</span>The Muay Thai Basics</li>
+          <li><span class=\"check\">✓</span>Combo List</li>
+          <li><span class=\"check\">✓</span>Footwork Fundamentals</li>
+          <li><span class=\"check\">✓</span>Bag Work Basics</li>
+        </ul>
+        <a class=\"btn-secondary outline-white pcard-cta\" href=\"https://payhip.com/b/ZfNhz\" target=\"_blank\" rel=\"noopener\">Get Starter</a>
+        <div class=\"secure\">Secure checkout via Payhip</div>
+      </div>
+      <!-- PREMIUM -->
+      <div class=\"pcard featured\">
+        <div class=\"tag red\">Most Popular</div>
+        <div class=\"pcard-head\"><div class=\"pcard-icon red\">👑</div><h3>Premium</h3></div>
+        <div class=\"sub\">The complete training system</div>
+        <div class=\"price-row\"><div class=\"price\">€29.90</div><div class=\"old\">€49.90</div></div>
+        <div class=\"tax\">One-time · Lifetime access</div>
+        <ul class=\"features\">
+          <li><span class=\"check red\">✓</span>Everything in Starter</li>
+          <li><span class=\"check red\">✓</span>Shadowboxing 101</li>
+          <li><span class=\"check red\">✓</span>Muay Thai Workout Structure</li>
+          <li><span class=\"check red\">✓</span>Calisthenics for Muay Thai</li>
+          <li><span class=\"check red\">✓</span>The Nutrition Guide</li>
+          <li><span class=\"check red\">✓</span>The Recovery Plan</li>
+        </ul>
+        <a class=\"btn-primary pcard-cta\" href=\"https://payhip.com/b/hqW3P\" target=\"_blank\" rel=\"noopener\">Get Premium</a>
+        <div class=\"secure\">Secure checkout via Payhip</div>
+      </div>
+      <!-- APEX -->
+      <div class=\"pcard\">
+        <div class=\"tag white\">Best Value</div>
+        <div class=\"pcard-head\"><div class=\"pcard-icon\">🏆</div><h3>Apex</h3></div>
+        <div class=\"sub\">Everything. Fighter-level.</div>
+        <div class=\"price-row\"><div class=\"price\">€79.90</div><div class=\"old\">€149.00</div></div>
+        <div class=\"tax\">One-time · Lifetime access</div>
+        <ul class=\"features\">
+          <li><span class=\"check\">✓</span>Everything in Premium</li>
+          <li><span class=\"check\">✓</span>Advanced Striking Techniques</li>
+          <li><span class=\"check\">✓</span>Defense & Counter System</li>
+          <li><span class=\"check\">✓</span>Sparring Guide</li>
+          <li><span class=\"check\">✓</span>Competition Preparation</li>
+          <li><span class=\"check\">✓</span>Mobility & Flexibility</li>
+          <li><span class=\"check\">✓</span>Injury Prevention</li>
+        </ul>
+        <a class=\"btn-secondary outline-white pcard-cta\" href=\"https://payhip.com/b/nkWa6\" target=\"_blank\" rel=\"noopener\">Get Apex</a>
+        <div class=\"secure\">Secure checkout via Payhip</div>
+      </div>
+    </div>
+    <div class=\"trust-row\">
+      <span>✓ Instant Access</span><span>✓ Lifetime Updates</span><span>✓ Secure Checkout</span><span>✓ One-Time Payment</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class=\"block\" id=\"testimonials\">
+  <div class=\"container\">
+    <div class=\"t-head\">
+      <div>
+        <div class=\"eyebrow\">Real Students. Real Results.</div>
+        <h2 class=\"h2\">Trusted By <span class=\"accent\">12,000+</span> Fighters</h2>
+      </div>
+      <div style=\"display:flex;align-items:center;gap:12px\"><span class=\"stars\" style=\"font-size:20px\">★★★★★</span><span style=\"font-size:14px;color:#d4d4d8;font-weight:600\">4.9 average from 2,400+ reviews</span></div>
+    </div>
+    <div class=\"t-grid\">
+      <div class=\"tcard big\">
+        <div class=\"q\">❝</div>
+        <p class=\"body\">\"Finally a Muay Thai course that doesn't waste time. The sparring & competition prep got me ready for my first amateur fight in 4 months. Won by TKO.\"</p>
+        <div class=\"author\">
+          <img class=\"avatar\" src=\"https://images.pexels.com/photos/5937765/pexels-photo-5937765.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400\" alt=\"\" />
+          <div><div class=\"name\">Marco D.</div><div class=\"role\">Apex Member · Italy</div></div>
+          <div class=\"stars-row\">★★★★★</div>
+        </div>
+      </div>
+      <div class=\"tcard\">
+        <div class=\"q\">❝</div>
+        <p class=\"body\">\"I trained at home for 6 months and walked into my first real gym session — coach asked who I'd trained with. That's the level.\"</p>
+        <div class=\"author\">
+          <img class=\"avatar\" src=\"https://images.pexels.com/photos/31500884/pexels-photo-31500884.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400\" alt=\"\" />
+          <div><div class=\"name\">Sara K.</div><div class=\"role\">Premium Member · Germany</div></div>
+          <div class=\"stars-row\">★★★★★</div>
+        </div>
+      </div>
+      <div class=\"tcard\">
+        <div class=\"q\">❝</div>
+        <p class=\"body\">\"Best €9.90 I ever spent. Footwork module alone changed how I move. Already upgrading to Premium.\"</p>
+        <div class=\"author\">
+          <img class=\"avatar\" src=\"https://images.unsplash.com/photo-1550345332-09e3ac987658?crop=entropy&cs=srgb&fm=jpg&q=85&w=400\" alt=\"\" />
+          <div><div class=\"name\">Jake R.</div><div class=\"role\">Starter Member · USA</div></div>
+          <div class=\"stars-row\">★★★★★</div>
+        </div>
+      </div>
+      <div class=\"tcard\">
+        <div class=\"q\">❝</div>
+        <p class=\"body\">\"The nutrition + recovery sections are gold. Lost 8kg, hit harder, sleep better. Whole life upgrade.\"</p>
+        <div class=\"author\">
+          <img class=\"avatar\" src=\"https://images.pexels.com/photos/5067770/pexels-photo-5067770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400\" alt=\"\" />
+          <div><div class=\"name\">Yara A.</div><div class=\"role\">Premium Member · UAE</div></div>
+          <div class=\"stars-row\">★★★★★</div>
+        </div>
+      </div>
+      <div class=\"tcard\">
+        <div class=\"q\">❝</div>
+        <p class=\"body\">\"Coach-level breakdowns. The defense & counter system was the missing piece in my sparring. Night-and-day difference.\"</p>
+        <div class=\"author\">
+          <img class=\"avatar\" src=\"https://images.pexels.com/photos/4753986/pexels-photo-4753986.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400\" alt=\"\" />
+          <div><div class=\"name\">Lukas B.</div><div class=\"role\">Apex Member · Switzerland</div></div>
+          <div class=\"stars-row\">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class=\"block\" id=\"faq\">
+  <div class=\"container\">
+    <div class=\"faq-wrap\">
+      <div class=\"faq-head\">
+        <div class=\"eyebrow\">Frequently Asked</div>
+        <h2 class=\"h2\">Got Questions?</h2>
+      </div>
+      <div id=\"faq-list\"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class=\"final\">
+  <div class=\"final-bg\"><img src=\"https://images.pexels.com/photos/2628210/pexels-photo-2628210.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1800\" alt=\"\" /></div>
+  <div class=\"final-content\">
+    <div class=\"eyebrow\">Your Move</div>
+    <h2>No More <span class=\"accent\">Excuses.</span><br/>Just Training.</h2>
+    <p>You're one decision away from learning Muay Thai properly. Pick your pack. Start tonight. Pay once. Train for life.</p>
+    <button class=\"btn-primary\" style=\"font-size:16px\" onclick=\"go('pricing')\">Get Instant Access <span class=\"arrow\">→</span></button>
+    <div style=\"margin-top:24px;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#71717a\">From €9.90 · Lifetime · Instant</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class=\"inner\">
+    <div class=\"logo\"><span class=\"logo-mark\" style=\"width:32px;height:32px;font-size:16px\">🔥</span><span class=\"logo-text\" style=\"font-size:18px\">muaythai<span>.home</span></span></div>
+    <div class=\"legal\">© <span id=\"year\"></span> muaythai.home · Train Smart. Train Long. Train For Life.</div>
+    <div class=\"flinks\"><a href=\"#\">Imprint</a><a href=\"#\">Privacy</a><a href=\"#\">Contact</a></div>
+  </div>
+</footer>
+
+<script>
+// Smooth scroll
+function go(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'})}
+
+// Sticky nav
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{if(window.scrollY>40)nav.classList.add('scrolled');else nav.classList.remove('scrolled')});
+
+// Marquee
+const mItems=['Muay Thai Basics','Combo List','Footwork','Bag Work','Shadowboxing','Defense & Counter','Sparring Guide','Competition Prep','Nutrition','Recovery','Calisthenics','Mobility'];
+document.getElementById('marquee-track').innerHTML=[...mItems,...mItems].map(t=>`<div class=\"marquee-item\"><span class=\"t\">${t}</span><span class=\"s\">✦</span></div>`).join('');
+
+// Modules
+const modules=[
+ {n:'01',t:'The Muay Thai Basics',d:'Stance, punches, kicks, elbows, knees — everything you need to build solid technique from day one.'},
+ {n:'02',t:'Combo List',d:'Learn and master key combinations step-by-step — from beginner combos to explosive fight sequences.'},
+ {n:'03',t:'Footwork Fundamentals',d:'Movement is everything: pivots, shuffles, angles, and balance drills to sharpen your ring IQ.'},
+ {n:'04',t:'Bag Work Basics',d:'How to use the heavy bag like a pro: drills, combos, conditioning, and striking with intent.'},
+ {n:'05',t:'Shadowboxing 101',d:'Solo work for perfecting technique, rhythm, and flow. Build awareness and fight vision.'},
+ {n:'06',t:'Workout Structure',d:'How to structure your weekly Muay Thai practice for real progress — even with limited time.'},
+ {n:'07',t:'Calisthenics for Muay Thai',d:'Bodyweight strength: explosiveness, endurance, and joint stability tailored for fighters.'},
+ {n:'08',t:'The Nutrition Guide',d:'What to eat before & after training. Stay fueled without overcomplicating.'},
+ {n:'09',t:'The Recovery Plan',d:'Rest, stretch, restore — tools for faster recovery, injury prevention, and long-term performance.'},
+ {n:'10',t:'Advanced Striking',d:'Precision, power, and fight-level striking: every elbow, knee, kick, and flow sequence to level up.'},
+ {n:'11',t:'Defense & Counter System',d:'Blocks, parries, slips, counters, teep defense, and clinch escapes — turn defense into offense.'},
+ {n:'12',t:'Sparring Guide',d:'Step-by-step guide to sparring safely and effectively. Build confidence and ring strategy.'},
+ {n:'13',t:'Competition Preparation',d:'Fight camp readiness: training plans, conditioning, mental prep, tapering, and fight-week routines.'},
+ {n:'14',t:'Mobility & Flexibility',d:'Dynamic warm-ups, static stretching, fluid drills — move better, hit harder, prevent injuries.'},
+ {n:'15',t:'Injury Prevention',d:'Prehab for shoulders, hips, knees, ankles. Train hard and safely for the long term.'},
+];
+document.getElementById('modules-grid').innerHTML=modules.map(m=>`<div class=\"mod\"><div class=\"mod-top\"><span class=\"n\">${m.n}</span><span class=\"d\"></span></div><h3>${m.t}</h3><p>${m.d}</p></div>`).join('');
+
+// FAQ
+const faqs=[
+ {q:\"Do I need any equipment?\",a:\"For Starter, just your body. As you progress, a heavy bag and basic floor space help — but every drill has a no-equipment alternative.\"},
+ {q:\"I'm a complete beginner. Will I be able to follow?\",a:\"Yes. Every module starts from absolute zero. Stance, footwork, basic strikes — explained slowly and visually, in plain English.\"},
+ {q:\"Is it really a one-time payment?\",a:\"100% yes. Pay once. Get lifetime access. No subscriptions, no hidden fees, no monthly charges. Future updates are included.\"},
+ {q:\"How do I access the content after buying?\",a:\"Instantly after checkout on Payhip. You get a secure link to all videos, PDFs, and structured training plans on any device.\"},
+ {q:\"What's the difference between the packs?\",a:\"Starter = foundations (basics, combos, footwork, bag work). Premium = full home-training system + nutrition & recovery. Apex = everything + advanced striking, defense, sparring, and competition prep.\"},
+ {q:\"Can I upgrade later?\",a:\"Yes. Buy Starter today, upgrade to Premium or Apex anytime. Just contact us — we'll credit your previous purchase.\"},
+ {q:\"Is this for fighters, fitness or self-defense?\",a:\"All three. Whether you want to compete, get in the best shape of your life, or learn to defend yourself — the system delivers.\"},
+];
+document.getElementById('faq-list').innerHTML=faqs.map((f,i)=>`<div class=\"faq-item\" id=\"faq-${i}\"><button class=\"faq-q\" onclick=\"toggleFaq(${i})\">${f.q}<span class=\"plus\">+</span></button><div class=\"faq-a\"><div class=\"faq-a-inner\">${f.a}</div></div></div>`).join('');
+function toggleFaq(i){document.querySelectorAll('.faq-item').forEach((el,idx)=>{if(idx===i)el.classList.toggle('open');else el.classList.remove('open')})}
+
+// Year
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
+"
+Observation: Create successful: /app/muaythai-home.html
